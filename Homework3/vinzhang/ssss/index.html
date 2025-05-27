@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html style="width: 100%; height: 100%">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Interactive Pokemon Dashboard - HW3" />
+    <title>Pokemon Interactive Dashboard - Homework 3</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+        width: 100%;
+        height: 100%;
+        background-color: #f8f9fa;
+      }
+
+      #tooltip {
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 12px;
+        pointer-events: none;
+        font-size: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        z-index: 1000;
+        transition: opacity 0.2s ease;
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Interactive circle styles */
+      .pokemon-circle {
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .pokemon-circle:hover {
+        filter: brightness(1.2);
+      }
+
+      /* Bar chart styles */
+      .stat-bar {
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .stat-bar:hover {
+        filter: brightness(1.1);
+      }
+
+      /* Brush styles */
+      .brush .selection {
+        fill: steelblue;
+        fill-opacity: 0.3;
+        stroke: steelblue;
+        stroke-width: 2;
+        stroke-opacity: 0.8;
+        rx: 3px;
+      }
+
+      /* Parallel coordinates line styles */
+      .pokemon-line {
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .pokemon-line:hover {
+        stroke-width: 3px !important;
+        opacity: 1 !important;
+      }
+
+      /* Button styles */
+      rect[cursor="pointer"] {
+        transition: all 0.2s ease;
+      }
+
+      rect[cursor="pointer"]:hover {
+        filter: brightness(0.9);
+      }
+
+      /* Animation keyframes */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* Text styles */
+      text {
+        font-family: "Arial", sans-serif;
+      }
+
+      /* Axis styles */
+      .axis text {
+        font-size: 11px;
+        fill: #333;
+      }
+
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #333;
+        shape-rendering: crispEdges;
+      }
+
+      /* Grid lines */
+      .grid line {
+        stroke: #e0e0e0;
+        stroke-width: 1px;
+        shape-rendering: crispEdges;
+      }
+
+      .grid path {
+        stroke-width: 0;
+      }
+
+      /* Legend styles */
+      .legend text {
+        font-size: 12px;
+        fill: #333;
+      }
+
+      /* Title styles */
+      .chart-title {
+        font-size: 18px;
+        font-weight: bold;
+        fill: #2c3e50;
+      }
+
+      /* Selection highlight styles */
+      .selected {
+        stroke: #e74c3c !important;
+        stroke-width: 3px !important;
+      }
+
+      /* Brushed highlight styles */
+      .brushed {
+        opacity: 1 !important;
+      }
+
+      .not-brushed {
+        opacity: 0.2 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Add the tooltip div directly in the HTML -->
+    <div id="tooltip"></div>
+
+    <svg width="100%" height="100%">
+      <!-- Visualizations will be rendered here by D3 -->
+    </svg>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
